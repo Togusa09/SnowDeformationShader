@@ -68,8 +68,6 @@
 				fixed4 colCombined;
 				colCombined = fixed4(0, 0, 0, 1.0);
 
-
-
 				if ((colCollider.r) > _SnowHeight) {
 					colCombined.r = colCollider + colTerrain;
 				}

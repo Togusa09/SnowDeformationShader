@@ -26,7 +26,7 @@ Material:
     - _ColliderTex:
         m_Texture: {fileID: 8400000, guid: dc4268b105ec0f049a89db4e9fc7a873, type: 2}
         m_Scale: {x: -1, y: 1}
-        m_Offset: {x: 1, y: 0}
+        m_Offset: {x: 1, y: -0}
     - _CollisionsTex:
         m_Texture: {fileID: 8400000, guid: 4989dd9eccd62d44fb8f6df33bf065f6, type: 2}
         m_Scale: {x: -1, y: 1}

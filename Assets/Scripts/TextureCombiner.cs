@@ -24,10 +24,13 @@ public class TextureCombiner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var offset = CameraParent.transform.position - TerrainDrawable.transform.position;
+        var offset = ( TerrainDrawable.transform.position- CameraParent.transform.position) / 20.0f;
         SnowDrawMaterial.SetTexture("_ColliderTex", ColliderTexture);
         SnowDrawMaterial.SetTexture("_TerrainTex", TerrainTexture);
         SnowDrawMaterial.SetFloat("_SnowHeight", SnowHeight);
+        //SnowDrawMaterial.SetVector("_Offset", offset);
+
+        SnowDrawMaterial.SetTextureOffset("_ColliderTex",  new Vector2(1 + offset.x, -offset.z));
 
         Graphics.Blit(TerrainDrawable.SnowImpactTexture, _Temp, SnowDrawMaterial);
         Graphics.Blit(_Temp, TerrainDrawable.SnowImpactTexture);
