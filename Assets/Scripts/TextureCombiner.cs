@@ -28,9 +28,9 @@ public class TextureCombiner : MonoBehaviour
         SnowDrawMaterial.SetTexture("_ColliderTex", ColliderTexture);
         SnowDrawMaterial.SetTexture("_TerrainTex", TerrainTexture);
         SnowDrawMaterial.SetFloat("_SnowHeight", SnowHeight);
-        //SnowDrawMaterial.SetVector("_Offset", offset);
 
         SnowDrawMaterial.SetTextureOffset("_ColliderTex",  new Vector2(1 + offset.x, -offset.z));
+        //SnowDrawMaterial.SetTextureOffset("_TerrainTex", new Vector2(1 + offset.x, -offset.z));
 
         Graphics.Blit(TerrainDrawable.SnowImpactTexture, _Temp, SnowDrawMaterial);
         Graphics.Blit(_Temp, TerrainDrawable.SnowImpactTexture);
