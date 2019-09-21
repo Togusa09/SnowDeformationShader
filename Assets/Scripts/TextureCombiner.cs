@@ -8,7 +8,6 @@ public class TextureCombiner : MonoBehaviour
     public Texture ColliderTexture;
 
     public GameObject CameraParent;
-    public Drawable TerrainDrawable;
     public Material SnowDrawMaterial;
 
     public float SnowHeight = 0.9f;
@@ -24,15 +23,24 @@ public class TextureCombiner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var offset = ( TerrainDrawable.transform.position- CameraParent.transform.position) / 20.0f;
-        SnowDrawMaterial.SetTexture("_ColliderTex", ColliderTexture);
-        SnowDrawMaterial.SetTexture("_TerrainTex", TerrainTexture);
-        SnowDrawMaterial.SetFloat("_SnowHeight", SnowHeight);
+        var cameraCollider = CameraParent.GetComponent<BoxCollider>();
+        LayerMask mask = LayerMask.GetMask("Terrain");
+        var terrainColliders = Physics.OverlapBox(cameraCollider.center, cameraCollider.extents, cameraCollider.transform.rotation, mask);
 
-        SnowDrawMaterial.SetTextureOffset("_ColliderTex",  new Vector2(1 + offset.x, -offset.z));
-        //SnowDrawMaterial.SetTextureOffset("_TerrainTex", new Vector2(1 + offset.x, -offset.z));
+        foreach (var terrainCollider in terrainColliders)
+        {
+            var terrain = terrainCollider.GetComponent<Drawable>();
 
-        Graphics.Blit(TerrainDrawable.SnowImpactTexture, _Temp, SnowDrawMaterial);
-        Graphics.Blit(_Temp, TerrainDrawable.SnowImpactTexture);
+            var offset = (terrain.transform.position - CameraParent.transform.position) / 20.0f;
+            SnowDrawMaterial.SetTexture("_ColliderTex", ColliderTexture);
+            SnowDrawMaterial.SetTexture("_TerrainTex", TerrainTexture);
+            SnowDrawMaterial.SetFloat("_SnowHeight", SnowHeight);
+
+            SnowDrawMaterial.SetTextureOffset("_ColliderTex", new Vector2(1 + offset.x, -offset.z));
+            //SnowDrawMaterial.SetTextureOffset("_TerrainTex", new Vector2(1 + offset.x, -offset.z));
+
+            Graphics.Blit(terrain.SnowImpactTexture, _Temp, SnowDrawMaterial);
+            Graphics.Blit(_Temp, terrain.SnowImpactTexture);
+        }
     }
 }

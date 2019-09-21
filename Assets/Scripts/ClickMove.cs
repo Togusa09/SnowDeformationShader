@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClickMove : MonoBehaviour
 {
+    public GameObject SnowCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,11 @@ public class ClickMove : MonoBehaviour
             }
 
             //GetComponent<Rigidbody>().AddForce( direction * new Vector3(0, 0, 40));
+        }
+
+        if (SnowCamera)
+        {
+            SnowCamera.transform.position = new Vector3(transform.position.x, SnowCamera.transform.position.y, transform.position.z);
         }
     }
 }
