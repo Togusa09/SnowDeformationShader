@@ -64,23 +64,23 @@
 				fixed colTerrain = tex2D(_TerrainTex, i.uvTerrain);
 				fixed colCollider = tex2D(_ColliderTex, i.uvCollider);
 
-
 				fixed4 colCombined;
 				colCombined = fixed4(0, 0, 0, 1.0);
 
-				//fixed4 col = fixed4(0, 0, 0, 1.0);
-				fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 current = tex2D(_MainTex, i.uv);
 
 				if ((i.uvCollider.x >= 0 && i.uvCollider.x <= 1.0) && (i.uvCollider.y >= 0 && i.uvCollider.y <= 1.0f))
 				{
-					if ((colCollider.r) > _SnowHeight) {
+					/*if ((colCollider.r) > _SnowHeight) {
 						colCombined.r = colCollider + colTerrain;
+					}*/
+					if ((colCollider.r) > _SnowHeight)
+					{
+						return max(current.r, colCollider.r);
 					}
-										
-					return max(col.r, colCombined.r);
 				}
 				
-				return col.r;
+				return current.r;
             }
             ENDCG
         }

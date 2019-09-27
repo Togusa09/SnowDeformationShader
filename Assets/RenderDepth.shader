@@ -52,8 +52,9 @@ Shader "Custom/RenderDepth"
 				fixed4 frag(output o) : COLOR
 				{
 					float depth = UNITY_SAMPLE_DEPTH(tex2D(_CameraDepthTexture, o.uv));
-				//depth = pow(Linear01Depth(depth), _DepthLevel);
-				depth = pow(depth, _DepthLevel);
+					//depth = pow(Linear01Depth(depth), _DepthLevel);
+					//depth = pow(depth, _DepthLevel);
+				
 				return depth;
 			}
 

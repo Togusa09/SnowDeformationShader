@@ -243,7 +243,6 @@ MonoBehaviour:
   TerrainTexture: {fileID: 8400000, guid: c3f5f7b1a14f13c42ab3dc90504c5b9b, type: 2}
   ColliderTexture: {fileID: 8400000, guid: dc4268b105ec0f049a89db4e9fc7a873, type: 2}
   CameraParent: {fileID: 986458291}
-  TerrainDrawable: {fileID: 480993769}
   SnowDrawMaterial: {fileID: 2100000, guid: 4538d532e00ce9644aa5eab460bcd15b, type: 2}
   SnowHeight: 0.9
 --- !u!4 &356889863
@@ -758,7 +757,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eee7103fc1f1f544da85dca04614c1fc, type: 2}
+  - {fileID: 2100000, guid: 275a2705b1068814abb4fef26352d52d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1350,8 +1349,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416127850}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.7, y: 0.94, z: 2.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2068192802}
   m_RootOrder: 1
@@ -1440,7 +1439,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0
-  far clip plane: 10
+  far clip plane: 2
   field of view: 60
   orthographic: 1
   orthographic size: 10

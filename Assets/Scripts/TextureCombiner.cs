@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
-//[ExecuteInEditMode]
 public class TextureCombiner : MonoBehaviour
 {
     public Texture TerrainTexture;
@@ -23,9 +23,17 @@ public class TextureCombiner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //UpdateTextures();
+        StartCoroutine(UpdateTexturesRoutine());
+    }
+
+    private void UpdateTextures()
+    {
         var cameraCollider = CameraParent.GetComponent<BoxCollider>();
-        LayerMask mask = LayerMask.GetMask("Terrain");
-        var terrainColliders = Physics.OverlapBox(cameraCollider.center, cameraCollider.extents, cameraCollider.transform.rotation, mask);
+
+        var mask = LayerMask.GetMask("Terrain");
+        var terrainColliders = Physics.OverlapBox(cameraCollider.center, cameraCollider.size / 2,
+            cameraCollider.transform.rotation, mask);
 
         foreach (var terrainCollider in terrainColliders)
         {
@@ -42,5 +50,11 @@ public class TextureCombiner : MonoBehaviour
             Graphics.Blit(terrain.SnowImpactTexture, _Temp, SnowDrawMaterial);
             Graphics.Blit(_Temp, terrain.SnowImpactTexture);
         }
+    }
+
+    IEnumerator UpdateTexturesRoutine()
+    {
+        UpdateTextures();
+        yield return new WaitForSeconds(0.5f);
     }
 }

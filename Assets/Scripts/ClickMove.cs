@@ -15,7 +15,10 @@ public class ClickMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SnowCamera)
+        {
+            SnowCamera.transform.position = new Vector3(transform.position.x, SnowCamera.transform.position.y, transform.position.z);
+        }
     }
 
     void OnMouseOver()
@@ -30,16 +33,8 @@ public class ClickMove : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100))
             {
-                //Debug.Log(hit.transform.gameObject.name);
                 GetComponent<Rigidbody>().AddForceAtPosition(-hit.normal * 50, hit.point);
             }
-
-            //GetComponent<Rigidbody>().AddForce( direction * new Vector3(0, 0, 40));
-        }
-
-        if (SnowCamera)
-        {
-            SnowCamera.transform.position = new Vector3(transform.position.x, SnowCamera.transform.position.y, transform.position.z);
         }
     }
 }
