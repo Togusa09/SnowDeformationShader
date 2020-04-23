@@ -25,7 +25,9 @@
 		#pragma require tessellation tessHW
 
         // Use shader model 3.0 target, to get nicer looking lighting
-        #pragma target 3.0
+        #pragma target 4.6
+
+		#include "MyTessellation.cginc"
 
         sampler2D _MainTex;
 		sampler2D _SnowTex;
@@ -60,7 +62,7 @@
 			v.vertex.xyz += normalize(v.normal) * d;
 		}
 
-        half _Glossiness;
+	    half _Glossiness;
         half _Metallic;
         fixed4 _Color;
 
